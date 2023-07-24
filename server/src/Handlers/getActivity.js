@@ -1,6 +1,4 @@
-const allActivities = require("../Handlers/allActivities");
-
-
+const allActivities = require("../Controllers/allActivities");
 
 const getActivity = async (req, res) => {
   try {
