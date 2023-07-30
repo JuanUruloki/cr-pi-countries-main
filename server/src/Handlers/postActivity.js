@@ -8,7 +8,7 @@ const postActivity = async (req, res) => {
       return res.status(400).send("Missing Data");
     }
 
-    await createActivity({ name, difficulty, duration, season, countries });
+    await createActivity( name, difficulty, duration, season, countries );
 
     return res.status(200).send("Activity succesfully created");
   } catch (error) {

@@ -46,12 +46,12 @@ const { Country, Activity } = sequelize.models;
 // Product.hasMany(Reviews);
 Activity.belongsToMany(Country, {
   through: "activity_country",
-  foreignKey: "activity_id",
+  // foreignKey: "activity_id",
 });
 
 Country.belongsToMany(Activity, {
   through: "activity_country",
-  foreignKey: "country_id",
+  // foreignKey: "country_id",
 });
 
 module.exports = {

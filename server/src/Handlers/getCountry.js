@@ -1,7 +1,7 @@
 const getAllCountries = require("../Controllers/allCountries");
 const countryByName = require("../Controllers/countryByName");
 
-const getCountryByName = async (req, res) => {
+const getCountry = async (req, res) => {
   const { name } = req.query;
   try {
     if (!name) {
@@ -16,4 +16,4 @@ const getCountryByName = async (req, res) => {
   }
 };
 
-module.exports = getCountryByName;
+module.exports = getCountry;
