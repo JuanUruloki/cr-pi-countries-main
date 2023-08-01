@@ -9,20 +9,27 @@ const SearchBar = () => {
   const handleInputChange = (event) => {
     const value = event.target.value;
     setInputValue(value);
-    console.log( inputValue);
+   
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    dispatch(getCountry(inputValue));
+    inputValue.length ?
+    dispatch(getCountry(inputValue)) 
+    : window.alert("No ingresó destino");
     setInputValue("");
+ 
   };
+
+
 
   const handleKeyDown = (event)=>{
     
     if(event.key === "Enter") {
-      dispatch(getCountry(inputValue));
-      setInputValue("");
+      inputValue.length ?
+    dispatch(getCountry(inputValue)) 
+    : window.alert("No ingresó destino");
+    setInputValue("");
     }
   }
 
@@ -39,24 +46,10 @@ const SearchBar = () => {
       <button type="submit" onClick={handleSubmit}>
         Buscar
       </button>
+      
     </div>
     {/*Antarctica South America Asia Africa Europe North America Oceania   */}
-    <div>
-      <select  >
-        <option value="A">Ascendente</option>
-        <option value="D">Descendente</option>
-      </select>
-      <select >
-        <option value="All">Todos</option>
-        <option value="All">Antartica</option>
-        <option value="All">Africa</option>
-        <option value="All">Asia</option>
-        <option value="All">Europe</option>
-        <option value="All">North America</option>
-        <option value="All">Oceania</option>
-        <option value="All">South America</option>
-      </select>
-    </div>
+   
     </div>
   );
 };

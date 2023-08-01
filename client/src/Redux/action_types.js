@@ -1,4 +1,20 @@
 export const GET_COUNTRIES = "GET_COUNTRIES";
-export const GET_COUNTRY = "GET_COUNTRY"
-export const FILTER = "FILTER";
-export const ORDER = "ORDER";
+
+export const GET_COUNTRY = "GET_COUNTRY";
+
+export const GET_COUNTRY_BY_ID = "GET_COUNTRY_BY_ID";
+
+export const FILTER_BY_CONTINENT = "FILTER_BY_CONTINENT";
+
+export const FILTER_BY_ACTIVITY = "FILTER_BY_ACTIVITY";
+
+export const ORDER_ALPHABETIC = "ORDER_ALPHABETIC";
+
+export const ORDER_POPULATION = "ORDER_POPULATION";
+
+export const ADD_ACTIVITY = "ADD_ACTIVITY";
+
+export const GET_ACTIVITIES = "GET_ACTIVITY";
+
+
+

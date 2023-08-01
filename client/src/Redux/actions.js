@@ -1,5 +1,5 @@
 import axios from "axios";
-import { FILTER, GET_COUNTRIES, GET_COUNTRY, ORDER } from "./action_types";
+import { FILTER_BY_ACTIVITY, FILTER_BY_CONTINENT, GET_COUNTRIES, GET_COUNTRY, ORDER_ALPHABETIC, ORDER_POPULATION , GET_COUNTRY_BY_ID, GET_ACTIVITIES, ADD_ACTIVITY } from "./action_types";
 
 export const getCountries = () => {
   const endpoint = "http://localhost:3001/countries";
@@ -7,7 +7,7 @@ export const getCountries = () => {
     try {
       const response = await axios.get(endpoint);
       const countries= response.data;
-      // console.log(countries);
+      
       return dispatch({
         type: GET_COUNTRIES,
         payload: countries,
@@ -36,12 +36,70 @@ export const getCountry = (name) => {
     }
   };
 };
-
-export const filterCountries = (continent, activity) => {
-  if (continent) return { type: FILTER, payload: continent };
-  if (activity) return { type: FILTER, payload: activity };
+export const getCountryById = (id) => {
+  const endpoint = `http://localhost:3001/countries/${id}`;
+  return async (dispatch) => {
+    try {
+      const response = await axios.get(endpoint);
+      const country = response.data;
+      return dispatch({
+        type: GET_COUNTRY_BY_ID,
+        payload: country,
+      });
+    } catch (error) {
+      console.error("Error al obtener pais", error.message);
+    }
+  };
 };
 
-export const orderCountries = (order) => {
-  return { type: ORDER, payload: order };
+export const filterByActivity = (activity) => {
+  return { type: FILTER_BY_ACTIVITY, payload: activity };
+  
+};
+export const filterByContinent = (payload) => {
+  return { type: FILTER_BY_CONTINENT, payload: payload };
+  
+};
+
+export const orderCountriesByName = (payload) => {
+  return { type: ORDER_ALPHABETIC, payload: payload };
+};
+
+export const orderCountriesByPopulation = (payload) => {
+  return { type: ORDER_POPULATION, payload: payload };
+};
+
+export const getActivities = () => {
+  const endpoint = "http://localhost:3001/activities";
+  return async (dispatch) => {
+    try {
+      const response = await axios.get(endpoint);
+      const activities= response.data;
+      
+      return dispatch({
+        type: GET_ACTIVITIES,
+        payload: activities,
+      });
+    } catch (error) {
+      console.error("Error al obtener actividades", error.message);
+    }
+  };
+};
+
+export const addActivity = (payload) => {
+  const endpoint = "http://localhost:3001/activities";
+  return async (dispatch) => {
+    try {
+      const response = await axios.post(endpoint, payload);
+      const activity= response.data;
+      
+      return dispatch({
+        type: ADD_ACTIVITY,
+        payload: activity,
+        });
+      
+    } catch (error) {
+      console.error("Error al obtener actividades", error.message);
+    }
+  };
 };
