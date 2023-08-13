@@ -1,5 +1,5 @@
 import Home from "./Home/Home";
-import About from "../components/About/About"
 import Detail from "./Detail/Detail";
+import Landing from "./Landing/Landing";
 
-export {Home,About, Detail};
+export {Home, Detail, Landing};

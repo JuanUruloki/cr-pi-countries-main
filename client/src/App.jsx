@@ -1,5 +1,5 @@
 import { Route, Routes, useLocation } from "react-router-dom";
-import { About, Home, Detail } from "./Views";
+import { Home, Detail, Landing } from "./Views/index";
 import Form from "./Views/Form/Form";
 import NavBar from "./components/NavBar/NavBar";
 
@@ -11,11 +11,10 @@ const App = () => {
       {pathname !== "/" && <NavBar />}
 
       <Routes>
-        <Route path="/" element={<About />} />
+        <Route path="/" element={<Landing />} />
         <Route path="/home" element={<Home />} />
-        <Route path='/detail/:id' element={<Detail/>} />
+        <Route path="/detail/:id" element={<Detail />} />
         <Route path="/form" element={<Form />} />
-        {/* <Route path='/activities' element={<Activities/>} /> */}
       </Routes>
     </div>
   );

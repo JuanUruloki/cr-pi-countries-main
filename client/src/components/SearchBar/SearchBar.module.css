@@ -1,0 +1,15 @@
+.container {
+  display: flex;
+}
+
+input {
+  margin-right: 30px;
+  padding-left: 10px;
+  border-radius: 16px;
+  border: none;
+  height: 32px;
+  width: 300px;
+  background-color: hsla(0, 0%, 100%, 0.8);
+}
+
+

@@ -1,26 +1,25 @@
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { getCountries } from "../../Redux/actions";
+import { getActivities, getCountries } from "../../Redux/actions";
 import Cards from "../../components/cards/Cards";
-import SearchBar from "../../components/SearchBar/SearchBar";
 
 
-const Home = ()=>{
-    
-    const dispatch = useDispatch();
+const Home = () => {
+  const dispatch = useDispatch();
 
-    useEffect(()=>{
-        dispatch(getCountries())
-    },[dispatch])
+  useEffect(() => {
+    dispatch(getCountries());
+    dispatch(getActivities())
+  }, [dispatch]);
 
+  return (
+    <div>
+      
 
-    return(
-        <div>
-            <div><SearchBar/></div>
-            
-            <Cards></Cards>
-        </div>
-    )
-}
+      <Cards></Cards>
+      
+    </div>
+  );
+};
 
 export default Home;

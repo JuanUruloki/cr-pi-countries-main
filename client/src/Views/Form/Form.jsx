@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getCountries, addActivity } from "../../Redux/actions";
+import styles from "./Form.module.css";
 
 const validate = (input) => {
   let errors = {};
@@ -22,8 +23,10 @@ const validate = (input) => {
   if (!input.season || input.season === "vacio")
     errors.season = "Debe indicar una estación";
 
-  if (!input.countries || input.countries.length === 0)
+  if (input.countries === "")
     errors.countries = "Debe asignar uno a mas paises";
+  if (input.countries.length > 5)
+    errors.countries = "La actividad sólo puede tener máximo 2 paises";
 
   return errors;
 };
@@ -31,12 +34,15 @@ const validate = (input) => {
 const Form = () => {
   const dispatch = useDispatch();
   const countries = useSelector((state) => state.countries);
+  // console.log(countries);
   const [errors, setErrors] = useState({});
+
+  const [countriesToSelect, setCountriesToSelect] = useState([]);
 
   const [input, setInput] = useState({
     name: "",
     difficulty: "",
-    duration: "",
+    duration: 0,
     season: "",
     countries: [],
   });
@@ -46,118 +52,146 @@ const Form = () => {
   }, [dispatch]);
 
   const handleChange = (event) => {
+    const property = event.target.name;
+    let value = event.target.value;
+    if (property === "duration") value = +value;
     setInput({
       ...input,
-      [event.target.name]: event.target.value,
+      [property]: value,
     });
     setErrors(
       validate({
         ...input,
-        [event.target.name]: event.target.value,
+        [property]: value,
       })
     );
   };
 
   const handleSelect = (event) => {
-    const selectedCountryId = event.target.value;
-    if (input.countries.includes(selectedCountryId)) {
-      setInput((state) => ({
-        ...state,
-        countries: state.countries.filter((id) => id !== selectedCountryId),
-      }));
-    } else {
-      setInput((state) => ({
-        ...state,
-        countries: [...state.countries, selectedCountryId],
-      }));
-    }
+    const selectedCountry = event.target.value;
+
+    setCountriesToSelect([...countriesToSelect, selectedCountry]);
+    setInput({
+      ...input,
+      countries: [...input.countries, selectedCountry],
+    });
+    setErrors(
+      validate({
+        ...input,
+        countries: [...input.countries, selectedCountry],
+      })
+    );
   };
 
-  const handleSubmit = (event) => {
+  const handleUnselect = (event) => {
+    const unselectName = event.target.innerText;
+
+    setCountriesToSelect(
+      countriesToSelect.filter((country) => country !== unselectName)
+    );
+    setInput({
+      ...input,
+      countries: input.countries.filter((country) => country !== unselectName),
+    });
+    setErrors(
+      validate({
+        ...input,
+        countries: input.countries.filter(
+          (country) => country !== unselectName
+        ),
+      })
+    );
+  };
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    if (
-      !input.name ||
-      !input.difficulty ||
-      !input.duration ||
-      !input.season ||
-      !input.countries
-    ) {
-      return window.alert(
-        "Ingrese datos faltantes antes de enviar el formulario"
-      );
-    }
 
     dispatch(addActivity(input));
     window.alert("Actividad añadida con exito");
     setInput({
       name: "",
       difficulty: "",
-      duration: "",
+      duration: 0,
       season: "",
       countries: [],
     });
+    console.log(input);
   };
 
-  // const handleDelete = (event)=>{
-  //     setInput({
-  //         ...input,
-  //         countries: input.countries.filter(country => country !== event)
-  //     })
-  // }
-
   return (
-    <div>
-      <div>
-        <h2>Crea tu actividad!</h2>
+    <div className={styles.container}>
+      <div className={styles.formContainer}>
+        <h1>Crea tu actividad</h1>
         <form onSubmit={handleSubmit}>
           <div>
+            <label>Nombre de la actividad</label>
             <input
               type="text"
-              placeholder="Nombre de actividad..."
+              placeholder="Ingrese un nombre..."
               name="name"
               onChange={handleChange}
             />
             {errors.name && <p>{errors.name}</p>}
           </div>
           <div>
-            <label>Seleccione el país de su actividad: </label>
-            <select
-              name="countries"
-              id="countries"
-              multiple
-              onChange={handleSelect}
-            >
-              <option> </option>
-              {countries.map((country) => (
-                <option 
-                key={country.id} 
-                value={country.id}
-                selected={input.countries.includes(country)}
+            <label htmlFor="countries">Paises disponibles:</label>
+            <div>
+              {countriesToSelect.length >= 5 ? (
+                ""
+              ) : (
+                <select
+                  value={input.countries}
+                  // name="countries"
+                  onChange={handleSelect}
+                  multiple
                 >
-                  {country.name}
-                </option>
-              ))}
-            </select>
+                  <option value="" disabled>
+                    Selecciona el país de tu actividad:
+                  </option>
+                  {countries?.map((country) => (
+                    <option
+                      key={country.id}
+                      value={country.id}
+                      name="countries"
+                    >
+                      {country.name}
+                    </option>
+                  ))}
+                </select>
+              )}
+            </div>
             {errors.countries && <p>{errors.countries}</p>}
+            <div key="country" className={styles.selected}>
+              {countriesToSelect
+                ? countriesToSelect.map((country) => (
+                    // <div key={country.name}>
+                    <p key={country.id} onClick={handleUnselect}>
+                      {country}
+                    </p>
+                    // </div>
+                  ))
+                : ""}
+            </div>
           </div>
           <div>
-            <label>Temporada: </label>
-            <select name="season" id="season" onChange={handleSelect}>
-              <option value="Verano">Verano</option>
-              <option value="Otoño">Otoño</option>
-              <option value="Invierno">Invierno</option>
-              <option value="Primavera">Primavera</option>
+            <label>Temporada de la actividad: </label>
+            <select name="season" id="season" onChange={handleChange}>
+              <option value="">Seleccione una temporada: </option>
+              <option value="Summer">Verano</option>
+              <option value="Fall">Otoño</option>
+              <option value="Winter">Invierno</option>
+              <option value="Spring">Primavera</option>
             </select>
             {errors.season && <p>{errors.season}</p>}
           </div>
           <div>
-            <label>Dificultad: </label>
+            <label>Nivel de dificultad: </label>
             <input
               type="number"
               value={input.difficulty}
               name="difficulty"
               onChange={handleChange}
-              placeholder="Rango de 1 a 5..."
+              // placeholder="Baja:1  Muy alta: 5..."
             />
             {errors.difficulty && <p>{errors.difficulty}</p>}
           </div>
@@ -168,15 +202,12 @@ const Form = () => {
               value={input.duration}
               name="duration"
               onChange={handleChange}
-              placeholder="Rango de 1 a 24"
+              // placeholder="1 a 24 hs"
             />
             {errors.duration && <p>{errors.duration}</p>}
           </div>
-          <div>
-            <button
-              type="submit"
-              disabled={Object.keys(errors).length === 0 ? false : true}
-            >
+          <div className={styles.buttonContainer}>
+            <button type="submit" disabled={Object.keys(errors).length > 0}>
               Crear actividad
             </button>
           </div>

@@ -1,13 +1,24 @@
 import axios from "axios";
-import { FILTER_BY_ACTIVITY, FILTER_BY_CONTINENT, GET_COUNTRIES, GET_COUNTRY, ORDER_ALPHABETIC, ORDER_POPULATION , GET_COUNTRY_BY_ID, GET_ACTIVITIES, ADD_ACTIVITY } from "./action_types";
+import {
+  FILTER_BY_ACTIVITY,
+  FILTER_BY_CONTINENT,
+  GET_COUNTRIES,
+  GET_COUNTRY,
+  ORDER_ALPHABETIC,
+  ORDER_POPULATION,
+  GET_COUNTRY_BY_ID,
+  GET_ACTIVITIES,
+  ADD_ACTIVITY,
+  // ADD_ACTIVITY,
+} from "./action_types";
 
 export const getCountries = () => {
   const endpoint = "http://localhost:3001/countries";
   return async (dispatch) => {
     try {
       const response = await axios.get(endpoint);
-      const countries= response.data;
-      
+      const countries = response.data;
+
       return dispatch({
         type: GET_COUNTRIES,
         payload: countries,
@@ -18,15 +29,13 @@ export const getCountries = () => {
   };
 };
 
-
-
 export const getCountry = (name) => {
   const endpoint = `http://localhost:3001/countries?name=${name}`;
   return async (dispatch) => {
     try {
       const response = await axios.get(endpoint);
       const country = response.data;
-      if(country === name) throw Error ("Ya elegiste este destino");
+      if (country === name) throw Error("Ya elegiste este destino");
       return dispatch({
         type: GET_COUNTRY,
         payload: country,
@@ -54,11 +63,9 @@ export const getCountryById = (id) => {
 
 export const filterByActivity = (activity) => {
   return { type: FILTER_BY_ACTIVITY, payload: activity };
-  
 };
 export const filterByContinent = (payload) => {
   return { type: FILTER_BY_CONTINENT, payload: payload };
-  
 };
 
 export const orderCountriesByName = (payload) => {
@@ -74,8 +81,8 @@ export const getActivities = () => {
   return async (dispatch) => {
     try {
       const response = await axios.get(endpoint);
-      const activities= response.data;
-      
+      const activities = response.data;
+
       return dispatch({
         type: GET_ACTIVITIES,
         payload: activities,
@@ -91,15 +98,14 @@ export const addActivity = (payload) => {
   return async (dispatch) => {
     try {
       const response = await axios.post(endpoint, payload);
-      const activity= response.data;
-      
+      const activity = response.data;
+
       return dispatch({
         type: ADD_ACTIVITY,
         payload: activity,
-        });
-      
+      });
     } catch (error) {
-      console.error("Error al obtener actividades", error.message);
+      console.error("Error al crear la actividad", error.message);
     }
   };
 };
