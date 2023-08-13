@@ -4,7 +4,7 @@ const allActivities =async ()=>{
 const activities = await Activity.findAll({
     include: Country,
   });
-  console.log("retorno actividad");
+ 
   return activities;
 }
 
