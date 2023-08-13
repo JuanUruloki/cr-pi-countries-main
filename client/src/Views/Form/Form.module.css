@@ -89,6 +89,13 @@
     background-color: hsla(0, 0%, 100%, 0.8);
     cursor: pointer;
     text-decoration: none;
+    &:hover {
+        box-shadow: 0px 0px 8px 2px rgb(0, 0, 0);
+      }
+  }
+
+  .formContainer p {
+    color: red;
   }
 
   .buttonContainer{

@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
+  clearAll,
   filterByActivity,
   filterByContinent,
   getCountries,
@@ -20,19 +21,22 @@ const Cards = () => {
   const filteredCountries = useSelector((state) => state.filteredCountries);
   const countriesFounded = useSelector((state) => state.foundCountries);
   const activities = useSelector((state) => state.allActivities);
-
   const [aux, setAux] = useState(false);
   const [currentPage, setCurrentPage] = useState(0);
   const startIndex = currentPage * countriesPerPage;
   const lastIndex = startIndex + countriesPerPage;
-  const countriesToDisplay = filteredCountries.slice(startIndex, lastIndex);
+  const countriesToRender = countriesFounded.length ?
+  countriesFounded.slice(startIndex, lastIndex) : filteredCountries.slice(startIndex, lastIndex);
   const isPrev = currentPage > 0;
   const prevDisable = isPrev ? "" : styles.disabled;
   const isNext =
     currentPage < Math.floor(filteredCountries.length / countriesPerPage);
   const nextDisable = isNext ? "" : styles.disabled;
 
-console.log(filteredCountries);
+  
+  
+
+
 
   const nextPage = () => {
     isNext && setCurrentPage(currentPage + 1);
@@ -48,7 +52,7 @@ console.log(filteredCountries);
     dispatch(filterByContinent(filter));
     setCurrentPage(0);
     setAux(!aux);
-    console.log(filteredCountries);
+    
   };
 
   const handleAlphabeticOrder = (event) => {
@@ -71,11 +75,13 @@ console.log(filteredCountries);
       : dispatch(filterByActivity(activity));
     setAux(!aux);
     setCurrentPage(0);
-    console.log(activities);
+    
   };
 
-  const countriesToRender = countriesFounded.length ?
-  countriesFounded : countriesToDisplay
+  const clearFilters = ()=>{
+    dispatch(clearAll());
+  }
+
 
   return (
     <div className={styles.container}>
@@ -120,7 +126,7 @@ console.log(filteredCountries);
           ) : (
             <select onChange={handleFilterByActivity}>
               <option value="none">Todos</option>
-              {activities.map((activity) => (
+              {Array.isArray(activities) && activities.map((activity) => (
                 <option value={activity.name} key={activity.id}>
                   {activity.name}
                 </option>
@@ -128,6 +134,9 @@ console.log(filteredCountries);
             </select>
           )}
         </div>
+        <button onClick={clearFilters}>
+          Limpiar filtros
+        </button>
       </div>
       <button onClick={prevPage} className={`${styles.button} ${prevDisable}`}>
         <img src={prev} alt="type icon" />

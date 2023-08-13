@@ -8,6 +8,8 @@ import {
   GET_COUNTRY_BY_ID,
   ORDER_ALPHABETIC,
   ORDER_POPULATION,
+  CLEAR_ALL,
+  
 } from "./action_types";
 
 const initialState = {
@@ -38,7 +40,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
       allCountriesFiltered = state.countries.filter(
         (country) => country.continent === payload
       );
-      console.log(allCountriesFiltered);
+    
       return payload === "All"
         ? { ...state, filteredCountries: [...state.countries] }
         : {
@@ -101,6 +103,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         allActivities: payload,
+        filteredActivities: payload,
       };
     case ADD_ACTIVITY:
       return {
@@ -114,14 +117,21 @@ const rootReducer = (state = initialState, { type, payload }) => {
       );
       
       
-      console.log(filteredCountriesAct);
-      console.log(payload);
+      
       return payload === "All"
         ? { ...state, filteredCountries: [...state.filteredCountries] }
         : {
             ...state,
             filteredCountries: filteredCountriesAct,
           };
+
+      case CLEAR_ALL:
+        return {...state, 
+        filteredCountries: [...state.countries]}
+
+      
+        
+
     default:
       return { ...state };
   }

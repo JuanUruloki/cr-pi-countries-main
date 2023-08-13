@@ -5,13 +5,13 @@ import SearchBar from "../SearchBar/SearchBar"
 const NavBar = () => {
   return(
   <div className= {style.container} >
-   <SearchBar/>
     <Link className={style.link} to="/home">
       <button>Inicio</button>
     </Link>
     <Link className={style.link} to="/form">
       <button> + Actividad</button>
     </Link>
+   <SearchBar/>
     
   </div>
   )

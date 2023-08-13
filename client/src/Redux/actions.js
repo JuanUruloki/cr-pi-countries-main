@@ -1,15 +1,15 @@
 import axios from "axios";
 import {
+  ADD_ACTIVITY,
+  CLEAR_ALL,
   FILTER_BY_ACTIVITY,
   FILTER_BY_CONTINENT,
+  GET_ACTIVITIES,
   GET_COUNTRIES,
   GET_COUNTRY,
-  ORDER_ALPHABETIC,
-  ORDER_POPULATION,
   GET_COUNTRY_BY_ID,
-  GET_ACTIVITIES,
-  ADD_ACTIVITY,
-  // ADD_ACTIVITY,
+  ORDER_ALPHABETIC,
+  ORDER_POPULATION
 } from "./action_types";
 
 export const getCountries = () => {
@@ -74,6 +74,13 @@ export const orderCountriesByName = (payload) => {
 
 export const orderCountriesByPopulation = (payload) => {
   return { type: ORDER_POPULATION, payload: payload };
+};
+
+export const clearAll = (payload) => {
+  return {
+    type: CLEAR_ALL,
+    payload: payload,
+  };
 };
 
 export const getActivities = () => {

@@ -15,6 +15,10 @@ const Detail = () => {
     
       dispatch(getCountryById(id))
     }, [dispatch,id]);
+
+    const goBack = () => {
+      window.history.go(-1)
+  }
     
     
   return (
@@ -30,6 +34,7 @@ const Detail = () => {
             <h4> Area: {countryDetail.area} m²</h4>
             <h4> Population: {countryDetail.population} habitants</h4>
             <img className={styles.flag} src={countryDetail.flag} alt="Bandera del pais"/>
+            <button onClick={goBack}>Volver</button>
         </div> : <p>Cargando...</p>
 }  
       

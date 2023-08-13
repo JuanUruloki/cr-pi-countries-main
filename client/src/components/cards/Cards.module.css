@@ -26,7 +26,8 @@
   align-items: center;
   height: 80vh;
   width: 90%;
-  background-color: hsla(32, 51%, 57%, 0.361);
+  background-color: hsla(32, 51%, 57%, 0.367);
+  backdrop-filter: blur(8px);
   border-radius: 32px;
   z-index: 4;
   box-shadow: 1px 1px 76px 15px rgba(0, 0, 0, 1);
@@ -44,6 +45,25 @@
   background-color: black;
   width: 200px;
   height: 30px;
+}
+.filters button {
+  display: flex;
+  align-items: center;
+  font-size: larger;
+  font-weight: lighter;
+  border-radius: 28px;
+  border: none;
+  margin-top: 36px;
+  cursor: pointer;
+  background-color: rgba(255, 255, 255, 0.808);
+  color: black;
+  width: 200px;
+  height: 30px;
+  box-shadow: 1px 1px 50px 10px rgba(0,0,0,1);
+  &:hover {
+    background-color: black;
+    color: white;
+  }
 }
 
 .filters select {
@@ -70,9 +90,13 @@
   height: 106px;
   width: 106px;
   padding: 1px;
+  cursor: pointer;
   margin-top: 350px;
   border-radius: 53px;
   background-color: rgba(210, 105, 30, 0.533);
+  &:hover {
+    box-shadow: 0px 0px 20px 6px rgb(0, 0, 0);
+  }
 }
 
 .disabled {

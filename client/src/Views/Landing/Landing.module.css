@@ -32,9 +32,13 @@
   font-weight: bolder;
   border-radius: 28px;
   border: none;
-  background-color: hsla(0, 0%, 100%, 0.8);
+  background-color: hsla(0, 0%, 100%, 0.562);
   cursor: pointer;
   box-shadow: 1px 1px 53px 7px rgba(0,0,0,1);
 -webkit-box-shadow: 1px 1px 53px 7px rgba(0,0,0,1);
 -moz-box-shadow: 1px 1px 53px 7px rgba(0,0,0,1);
+&:hover {
+  background-color: hsla(0, 0%, 100%, 0.92);
+  /* color: white; */
+}
 }

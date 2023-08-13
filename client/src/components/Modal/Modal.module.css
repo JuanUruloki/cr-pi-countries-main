@@ -1,0 +1,24 @@
+.container{
+    
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: Helvetica;
+    font-weight: lighter;
+    color: white;
+    padding: 3em;
+    border-radius: 30px;
+    background-color: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(18px);
+    box-shadow: -1px -1px 39px 29px rgba(255,255,255,0.46);
+    z-index: 9999;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    h5 {
+        margin: 64px;
+    }
+}
+

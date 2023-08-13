@@ -16,5 +16,9 @@ export const ADD_ACTIVITY = "ADD_ACTIVITY";
 
 export const GET_ACTIVITIES = "GET_ACTIVITY";
 
+export const CLEAR_ALL = "CLEAR_ALL";
+
+
+
 
 

@@ -1,41 +1,28 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getCountries, addActivity } from "../../Redux/actions";
+import { addActivity, getCountries } from "../../Redux/actions";
+import validate from "../../Utils/Validate";
+import Modal from "../../components/Modal/Modal";
 import styles from "./Form.module.css";
-
-const validate = (input) => {
-  let errors = {};
-  let difficulty = Number(input.difficulty);
-  let duration = Number(input.duration);
-
-  if (!input.name) errors.name = "Debe ingresar un nombre";
-  else if (/[^A-Za-z0-9 ]+/g.test(input.name))
-    errors.name = "Nombre no puede tener caracteres especiales o tildes";
-
-  if (!input.difficulty) errors.difficulty = "Debe especificar la dificultad";
-  else if (difficulty <= 0 || difficulty > 5)
-    errors.difficulty = "Debe ser mayor a 1 y menor a 5";
-
-  if (!input.duration) errors.duration = "Debe espcificar la duración";
-  else if (duration <= 0 || duration > 24)
-    errors.duration = "Debe ser mas de 1 hora y menos de 24 horas";
-
-  if (!input.season || input.season === "vacio")
-    errors.season = "Debe indicar una estación";
-
-  if (input.countries === "")
-    errors.countries = "Debe asignar uno a mas paises";
-  if (input.countries.length > 5)
-    errors.countries = "La actividad sólo puede tener máximo 2 paises";
-
-  return errors;
-};
 
 const Form = () => {
   const dispatch = useDispatch();
   const countries = useSelector((state) => state.countries);
-  // console.log(countries);
-  const [errors, setErrors] = useState({});
+
+  const [showModal, setShowModal] = useState(false);
+
+  const [modal, setModal] = useState({
+    title: "",
+    content: "",
+  })
+  
+  const [errors, setErrors] = useState({
+    name: "",
+    difficulty: "",
+    duration: 0,
+    season: "",
+    countries: [],
+  });
 
   const [countriesToSelect, setCountriesToSelect] = useState([]);
 
@@ -50,6 +37,19 @@ const Form = () => {
   useEffect(() => {
     dispatch(getCountries());
   }, [dispatch]);
+
+  const displayModal = (title, content, time) => {
+    setModal({
+      title: title,
+      content: content,
+  })
+  setShowModal(true)
+  setTimeout(() => {
+      setShowModal(false)
+      setModal({ title: '', message: '' })
+  }, time)
+}
+  
 
   const handleChange = (event) => {
     const property = event.target.name;
@@ -107,7 +107,7 @@ const Form = () => {
     event.preventDefault();
 
     dispatch(addActivity(input));
-    window.alert("Actividad añadida con exito");
+    displayModal("Actividad Creada", "Tu actividad fue creada con exito", 3000)
     setInput({
       name: "",
       difficulty: "",
@@ -115,11 +115,13 @@ const Form = () => {
       season: "",
       countries: [],
     });
-    console.log(input);
+
+    
   };
 
   return (
     <div className={styles.container}>
+      {showModal && <Modal title={modal.title} content={modal.content} />}
       <div className={styles.formContainer}>
         <h1>Crea tu actividad</h1>
         <form onSubmit={handleSubmit}>
@@ -154,14 +156,14 @@ const Form = () => {
                       value={country.id}
                       name="countries"
                     >
-                      {country.name}
+                      <div>{country.name}</div>
                     </option>
                   ))}
                 </select>
               )}
             </div>
             {errors.countries && <p>{errors.countries}</p>}
-            <div key="country" className={styles.selected}>
+            <div className={styles.selected}>
               {countriesToSelect
                 ? countriesToSelect.map((country) => (
                     // <div key={country.name}>
