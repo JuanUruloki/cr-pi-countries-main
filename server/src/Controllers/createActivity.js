@@ -7,7 +7,7 @@ const createActivity = async ( name, difficulty, duration, season, countries ) =
     difficulty,
     duration,
     season,
-    countries,
+    
   });
 
   countries.forEach(country => {
