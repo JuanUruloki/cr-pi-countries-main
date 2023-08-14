@@ -26,7 +26,7 @@
   align-items: center;
   height: 80vh;
   width: 90%;
-  background-color: hsla(32, 51%, 57%, 0.367);
+  background-color: hsla(0, 0%, 100%, 0.263);
   backdrop-filter: blur(8px);
   border-radius: 32px;
   z-index: 4;
@@ -87,13 +87,16 @@
 }
 
 .button {
-  height: 106px;
-  width: 106px;
-  padding: 1px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 82px;
+  width: 96px;
   cursor: pointer;
-  margin-top: 350px;
+  margin-top: 380px;
   border-radius: 53px;
-  background-color: rgba(210, 105, 30, 0.533);
+  background-color: rgba(255, 255, 255, 0.551);
+  backdrop-filter: blur(2px);
   &:hover {
     box-shadow: 0px 0px 20px 6px rgb(0, 0, 0);
   }

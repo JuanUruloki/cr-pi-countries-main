@@ -139,7 +139,7 @@ const Cards = () => {
         </button>
       </div>
       <button onClick={prevPage} className={`${styles.button} ${prevDisable}`}>
-        <img src={prev} alt="type icon" />
+        <img src={prev} alt="prev icon" />
       </button>
       <div className={styles.cardsContainer}>
         {countriesToRender.map((country) => {
@@ -155,7 +155,7 @@ const Cards = () => {
         })}
       </div>
       <button onClick={nextPage} className={`${styles.button} ${nextDisable}`}>
-        <img src={next} alt="type icon" />
+        <img src={next} alt="next icon" />
       </button>
     </div>
   );

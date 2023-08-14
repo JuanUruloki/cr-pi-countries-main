@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addActivity, getCountries } from "../../Redux/actions";
-import validate from "../../Utils/Validate";
-import Modal from "../../components/Modal/Modal";
+import { getCountries, addActivity } from "../../Redux/actions";
 import styles from "./Form.module.css";
+import Modal from "../../components/Modal/Modal";
+import validate from "../../Utils/Validate";
+
+
 
 const Form = () => {
   const dispatch = useDispatch();
@@ -19,7 +21,7 @@ const Form = () => {
   const [errors, setErrors] = useState({
     name: "",
     difficulty: "",
-    duration: 0,
+    duration: "",
     season: "",
     countries: [],
   });
@@ -167,7 +169,7 @@ const Form = () => {
               {countriesToSelect
                 ? countriesToSelect.map((country) => (
                     // <div key={country.name}>
-                    <p key={country.id} onClick={handleUnselect}>
+                    <p className={styles.country} key={country.id} onClick={handleUnselect}>
                       {country}
                     </p>
                     // </div>
@@ -193,7 +195,6 @@ const Form = () => {
               value={input.difficulty}
               name="difficulty"
               onChange={handleChange}
-              // placeholder="Baja:1  Muy alta: 5..."
             />
             {errors.difficulty && <p>{errors.difficulty}</p>}
           </div>
@@ -204,7 +205,6 @@ const Form = () => {
               value={input.duration}
               name="duration"
               onChange={handleChange}
-              // placeholder="1 a 24 hs"
             />
             {errors.duration && <p>{errors.duration}</p>}
           </div>

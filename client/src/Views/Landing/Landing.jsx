@@ -10,6 +10,7 @@ const Landing = () => {
       <Link to="/home">
         <button>Ingresar</button>
       </Link>
+      <p>App by Juan Pablo Valdivia</p>
     </div>
   );
 };

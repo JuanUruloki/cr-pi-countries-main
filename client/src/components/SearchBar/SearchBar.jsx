@@ -3,6 +3,8 @@ import { useDispatch } from "react-redux";
 import { getCountry } from "../../Redux/actions";
 import Modal from "../../components/Modal/Modal";
 import styles from "./SearchBar.module.css";
+import search from "../../assets/images/search.png"
+import clean from "../../assets/images/clean.png"
 
 const SearchBar = () => {
   const dispatch = useDispatch();
@@ -61,15 +63,15 @@ const SearchBar = () => {
       {showModal && <Modal title={modal.title} content={modal.content} />}
       <input
         type="text"
-        placeholder="Elije tu destino!"
+        placeholder="Ingrese el destino"
         value={inputValue}
         onChange={handleInputChange}
         onKeyDown={handleKeyDown}
       />
       <button type="submit" onClick={handleSubmit}>
-        Buscar
+        <img className={styles.search} src={search} alt="search icon" />
       </button>
-      <button onClick={clear}>Limpiar</button>
+      <button onClick={clear}><img className={styles.clean} src={clean} alt="clean icon" /></button>
     </div>
   );
 };

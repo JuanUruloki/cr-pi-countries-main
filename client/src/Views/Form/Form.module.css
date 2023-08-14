@@ -1,113 +1,129 @@
 .container {
-    background-image: url("../../assets/images/notepad-1130743.jpg");
-    background-size: cover;
-    width: 100%;
-    height: 92.8vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    font-family: Helvetica;
-    
-  }
+  background-image: url("../../assets/images/notepad-1130743.jpg");
+  background-size: cover;
+  width: 100%;
+  height: 92.8vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  font-family: Helvetica;
+}
 
-  .container form{
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin: 10px;
-    
-  }
+.container form {
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 6px;
+}
 
-  .formContainer{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    
-    height: 800px;
-    width: 600px;
-    background-color: rgba(255, 255, 255, 0.419);
-    backdrop-filter: blur(14px);
-    border-radius: 24px;
-    align-items: center;
-    color: black;
-    box-shadow: 1px 1px 76px 31px rgba(0,0,0,1);
-    -webkit-box-shadow: 1px 1px 76px 31px rgba(0,0,0,1);
-    -moz-box-shadow: 1px 1px 76px 31px rgba(0,0,0,1);
-  }
+.formContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
-  .formContainer input{
-    display: flex;
+  height: 800px;
+  width: 600px;
+  background-color: hsla(0, 0%, 100%, 0.263);
+  backdrop-filter: blur(8px);
+  border-radius: 24px;
+  align-items: center;
+  color: black;
+  box-shadow: 1px 1px 76px 31px rgba(0, 0, 0, 1);
+  -webkit-box-shadow: 1px 1px 76px 31px rgba(0, 0, 0, 1);
+  -moz-box-shadow: 1px 1px 76px 31px rgba(0, 0, 0, 1);
+}
+
+.formContainer input {
+  display: flex;
   align-items: center;
   font-size: larger;
   font-weight: lighter;
   border-radius: 28px;
   border: none;
-  margin: 10px;
+  margin: 6px;
   background-color: white;
   width: 250px;
   height: 30px;
-  }
+}
 
-  .formContainer select {
-    font-size: larger;
-    font-weight: lighter;
-    border-radius: 16px;
-    border: none;
-    margin: 10px;
-    cursor: pointer;
-    padding-left: 4px;
-    background-color: hsla(0, 0%, 100%, 0.8);
-  }
+.formContainer select {
+  font-size: larger;
+  font-weight: lighter;
+  border-radius: 16px;
+  border: none;
+  margin: 6px;
+  cursor: pointer;
+  padding-left: 4px;
+  background-color: hsla(0, 0%, 100%, 0.8);
+}
 
-  .formContainer label{
-    display: flex;
-    align-items: center;
-    font-size: larger;
-    font-weight: lighter;
-    border-radius: 28px;
-    border: none;
-    padding-left: 12px;
-    background-color: black;
-    color: white;
-    width: 250px;
-    height: 30px;
-  }
+.formContainer label {
+  display: flex;
+  align-items: center;
+  font-size: larger;
+  font-weight: lighter;
+  border-radius: 28px;
+  border: none;
+  padding-left: 12px;
+  background-color: black;
+  color: white;
+  width: 250px;
+  height: 30px;
+}
 
-  .formContainer button {
-    display: flex;
-    align-items: center;
-    padding: 12px;
-    margin: 30px;
-    width: fit-content;
-    height: 35px;
-    font-family: Helvetica;
-    font-size: large;
-    font-weight: lighter;
-    border-radius: 28px;
-    border: none;
-    background-color: hsla(0, 0%, 100%, 0.8);
-    cursor: pointer;
-    text-decoration: none;
-    &:hover {
-        box-shadow: 0px 0px 8px 2px rgb(0, 0, 0);
-      }
+.formContainer button {
+  display: flex;
+  align-items: center;
+  padding: 12px;
+  margin: 6px;
+  width: fit-content;
+  height: 35px;
+  font-family: Helvetica;
+  font-size: large;
+  font-weight: lighter;
+  border-radius: 28px;
+  border: none;
+  background-color: hsla(0, 0%, 100%, 0.8);
+  cursor: pointer;
+  text-decoration: none;
+  &:hover {
+    box-shadow: 0px 0px 8px 2px rgb(0, 0, 0);
   }
+}
 
-  .formContainer p {
-    color: red;
-  }
+.formContainer p {
+  color: red;
+}
 
-  .buttonContainer{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 50px;
-    width: 100%;
-  }
+.buttonContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 50px;
+  width: 100%;
+}
 
-  .selected{
-    display: flex;
-    flex-direction: row;
-    justify-content: start;
+.selected {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 268px;
+  height: 16px;
+  margin: 10px;
+  padding-bottom: 18px;
+  
+  
+}
+
+.country {
+  /* position: static; */
+  color: black !important;
+  font-weight: bold;
+  height: fit-content;
+  width: fit-content;
+  
+  &:hover {
+    color:red !important
   }
+}

@@ -5,12 +5,18 @@
 input {
   margin-right: 30px;
   padding-left: 10px;
-  border-radius: 16px;
+  border-radius: 21px;
   border: none;
-  height: 32px;
+  height: 42px;
   width: 300px;
-  background-color: hsla(0, 0%, 100%, 0.8);
+  background-color: hsla(0, 0%, 100%, 0.68);
   
 }
 
+.search {
+  height: 34px;
+}
 
+.clean {
+  height: 34px;
+}

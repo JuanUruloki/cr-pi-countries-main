@@ -11,6 +11,7 @@
 }
 
 .title {
+  font-size: x-large;
   width: 90%;
   height: 15%;
   background-image: radial-gradient(
@@ -41,4 +42,10 @@
   background-color: hsla(0, 0%, 100%, 0.92);
   /* color: white; */
 }
+}
+
+.container p {
+  position: absolute;
+  margin-top: 920px;
+  margin-left: 1680px;
 }
