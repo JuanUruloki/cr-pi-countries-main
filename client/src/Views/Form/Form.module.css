@@ -2,7 +2,7 @@
   background-image: url("../../assets/images/notepad-1130743.jpg");
   background-size: cover;
   width: 100%;
-  height: 92.8vh;
+  height: 91.7vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -124,6 +124,7 @@
   width: fit-content;
   
   &:hover {
-    color:red !important
+    color:white !important
   }
+  cursor: url("../../assets/images/eliminar.png"),auto;
 }
